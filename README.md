@@ -6,10 +6,15 @@ Features 🌟
 
 User Features:
 Register and log in securely.
+
 Browse available cars filtered by type, price, and availability.
+
 Book and cancel car rentals.
+
 View and manage booking history.
+
 Admin Features:
+
 Add, update, or delete car information.
 Manage user bookings.
 View analytics for car usage and revenue generation.
