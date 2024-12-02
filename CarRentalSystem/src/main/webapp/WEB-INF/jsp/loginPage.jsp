@@ -19,7 +19,7 @@
 
         /* Navigation Bar Styles */
         .navbar {
-            background-color: rgba(0, 0, 0, 0.8); /* Black background */
+            background-color: rgba(0, 0, 0, 0.4); /* Transparent background */
             padding: 15px;
             display: flex;
             justify-content: space-between;
@@ -34,40 +34,42 @@
         }
 
         .navbar h1 {
-            color: white; /* White text for navbar */
+            color: gold; /* Gold text for navbar title */
             font-size: 28px;
             display: flex;
             align-items: center;
             margin: 0;
         }
 
-        .navbar a {
-            color: #007BFF;
-            font-size: 16px;
+        .register-link a {
+            color: gold; /* Gold text for 'Register' */
             text-decoration: none;
             font-weight: bold;
-            margin-left: 10px;
         }
 
-        .navbar a:hover {
-            color: #0056b3;
+        .register-link span {
+            color: white; /* White text for 'Here?' */
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
         }
 
         /* Container Styles for Login Box */
         .container {
             max-width: 450px;
             margin: 100px auto;
-            background-color: rgba(0, 0, 0, 0.7); /* Black background */
+            background-color: rgba(0, 0, 0, 0.55); /* Transparent black background */
             padding: 30px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
             border-radius: 12px;
             text-align: center;
-            margin-left: 55%; /* Move the login box 4 times to the right */
+            margin-left: 55%; /* Move the login box to the right */
         }
 
         h1 {
             text-align: center;
-            color: white; /* White text for title */
+            color: gold; /* Gold text for title */
             font-size: 2em;
             margin-bottom: 20px;
         }
@@ -83,8 +85,8 @@
         }
 
         input[type="submit"] {
-            background-color: #007BFF;
-            color: white;
+            background-color: gold; /* Gold background */
+            color: black; /* Black text */
             padding: 12px;
             border: none;
             border-radius: 8px;
@@ -92,23 +94,11 @@
             width: 100%;
             font-size: 18px;
             margin-top: 20px;
+            font-weight: bold;
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        .register-link {
-            margin-top: 20px;
-        }
-
-        .register-link a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        .register-link a:hover {
-            text-decoration: underline;
+            background-color: #e6be8a; /* Slightly lighter gold on hover */
         }
 
         .checkbox-container {
@@ -117,12 +107,8 @@
         }
 
         .checkbox-container label {
-            color: #fff;
+            color: gold; /* Gold text for checkbox label */
             font-size: 14px;
-        }
-
-        .checkbox-container input[type="checkbox"] {
-            margin-right: 8px;
         }
     </style>
 </head>
@@ -160,10 +146,8 @@
             const toggleButton = document.getElementById("showPassword");
             if (passwordField.type === "password") {
                 passwordField.type = "text";
-                toggleButton.textContent = "Hide Password";
             } else {
                 passwordField.type = "password";
-                toggleButton.textContent = "Show Password";
             }
         }
     </script>

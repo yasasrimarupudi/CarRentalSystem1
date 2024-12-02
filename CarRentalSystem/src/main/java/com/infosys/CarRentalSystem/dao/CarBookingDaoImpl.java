@@ -3,6 +3,8 @@ package com.infosys.CarRentalSystem.dao;
 import com.infosys.CarRentalSystem.bean.CarBooking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 import java.util.List;
 @Service
 public class CarBookingDaoImpl implements CarBookingDao{
@@ -36,5 +38,10 @@ public class CarBookingDaoImpl implements CarBookingDao{
     @Override
     public List<CarBooking> findAllByUsername(String username) {
         return carBookingRepository.findAllByUsername(username);
+    }
+    @Override
+    public List<CarBooking> findActiveBookingsByUsername(String username) {
+        List<String> activeStatuses = Arrays.asList("Pending", "Confirmed");
+        return carBookingRepository.findActiveBookingsByUsername(username, activeStatuses);
     }
 }

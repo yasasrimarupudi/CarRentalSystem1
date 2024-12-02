@@ -13,22 +13,24 @@
             padding: 0;
             background: url('https://images.unsplash.com/photo-1502014335594-c026800f24ee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
             background-size: cover;
+            color: white; /* Default text color */
         }
 
         .navbar {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: black;
-        }
+    background-color: transparent; /* Make the navbar background transparent */
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: gold; /* White text for better visibility */
+}
+        
 
         .navbar img {
             width: 30px;
@@ -55,42 +57,46 @@
         .container {
             max-width: 400px;
             margin: 120px auto;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: transparent; /* Transparent background */
             padding: 18px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: gold; /* Headings in gold */
+            text-align: center;
         }
 
         input[type="text"], input[type="password"], input[type="email"], select {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 2px solid gold; /* Borders in gold */
             border-radius: 10px;
             box-sizing: border-box;
             font-size: 14px;
-        }
-
-        button {
-            background-color: #007BFF;
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent-like inputs */
             color: white;
-            padding: 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
         }
 
         input::placeholder {
             font-size: 14px;
-            color: #888;
+            color: white; /* Placeholders in white */
         }
+
+        button {
+    background-color: gold; /* Direct gold background */
+    color: black; /* Button text in black */
+    padding: 5px;
+    border: 2px solid gold; /* Borders in gold */
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
+}
+        
 
         .form-group {
             position: relative;
@@ -100,9 +106,9 @@
         function passwordCheck() {
             var pass1 = (document.getElementById("pass1").value).toString();
             var pass2 = (document.getElementById("pass2").value).toString();
-            if(pass1.length < 5 || pass1.length > 10){
-            	alert("Password must be between 5 to 10 character long");
-            	return;
+            if (pass1.length < 5 || pass1.length > 10) {
+                alert("Password must be between 5 to 10 characters long");
+                return;
             }
             if (pass1 === pass2)
                 document.getElementById("registrationForm").submit();
@@ -124,7 +130,7 @@
 </div>
 
 <div class="container">
-    <h1 style="text-align:center;">Register</h1>
+    <h1>Register</h1>
 
     <form:form id="registrationForm" action="/register" method="post" modelAttribute="userRecord">
         <div class="form-group">

@@ -38,4 +38,12 @@ public class CarDaoImpl implements CarDao {
         // Assuming there is a method in CarRepository to find available cars
         return repository.getAvailableCars();
     }
+    @Override
+    public void updateCarAvailability(String carNumber, boolean availability) {
+        Car car = findById(carNumber);
+        if (car != null) {
+            car.setAvailable(availability);  // Assuming 'available' is a boolean field in the Car class
+            repository.save(car);  // Save the updated car back to the repository
+        }
+    }
 }

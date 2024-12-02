@@ -1,14 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Entry Page</title>
+    <title>Add New Car</title>
     <style>
         body {
             font-family: 'Cambria', serif;
-            background-color: #000; /* Black background for entire page */
-            background-image: url('car7.jpg'); /* Add your background image URL here */
+            background-color: #000;
+            background-image: url('car7.jpg'); /* Add your background image URL */
             background-size: cover;
             background-position: center;
             margin: 0;
@@ -103,94 +106,50 @@
             align-items: stretch;
         }
 
-        /* Side by side label and input */
-        .form-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .form-row label {
-            flex: 1;
-            margin-right: 10px;
-            text-align: right;
-        }
-
-        .form-row .input-box {
-            flex: 2;
-        }
-
         @media (max-width: 600px) {
             .container {
                 width: 90%;
-            }
-
-            .form-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .form-row label {
-                margin-right: 0;
-                margin-bottom: 5px;
-            }
-
-            .form-row .input-box {
-                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Car Entry Page</h1>
-        <form action="/carAdd" method="post">
-            <div class="form-row">
-                <label for="carNumber">Enter Car Registration Number:</label>
-                <input type="text" id="carNumber" name="carNumber" placeholder="Enter Registration Number" class="input-box" />
-            </div>
+        <h1>Add New Car</h1>
+        <form:form action="/carAdd" method="post" modelAttribute="carRecord">
+            <form:hidden path="available" />
 
-            <div class="form-row">
-                <label for="carName">Enter Car Name:</label>
-                <input type="text" id="carName" name="carName" placeholder="Enter Car Name" class="input-box" />
-            </div>
+            <label for="carNumber">Car Registration Number:</label>
+            <form:input path="carNumber" id="carNumber" class="input-box" placeholder="Enter Registration Number" />
 
-            <div class="form-row">
-                <label for="carColor">Enter Car Color:</label>
-                <input type="text" id="carColor" name="carColor" placeholder="Enter Car Color" class="input-box" />
-            </div>
+            <label for="carName">Car Name:</label>
+            <form:input path="carName" id="carName" class="input-box" placeholder="Enter Car Name" />
 
-            <div class="form-row">
-                <label for="manufacturer">Enter Manufacturer Name:</label>
-                <input type="text" id="manufacturer" name="manufacturer" placeholder="Enter Manufacturer Name" class="input-box" />
-            </div>
+            <label for="carColor">Car Color:</label>
+            <form:input path="carColor" id="carColor" class="input-box" placeholder="Enter Car Color" />
 
-            <div class="form-row">
-                <label for="yearOfMfg">Enter Year of Manufacture:</label>
-                <input type="number" id="yearOfMfg" name="yearOfMfg" placeholder="Enter Year" min="1886" max="2024" class="input-box" />
-            </div>
+            <label for="manufacturer">Car Manufacturer Name:</label>
+            <form:input path="manufacturer" id="manufacturer" class="input-box" placeholder="Enter Manufacturer Name" />
 
-            <div class="form-row">
-                <label for="rentRate">Enter Rent Rate per Hour:</label>
-                <input type="number" id="rentRate" name="rentRate" placeholder="Enter Rent Rate" step="0.01" min="0" class="input-box" />
-            </div>
+            <label for="yearOfMfg">Year of Manufacturing:</label>
+            <form:input path="yearOfMfg" id="yearOfMfg" class="input-box" placeholder="Enter Year of Manufacturing" />
 
-            <div class="form-row">
-                <label for="variantId">Select Variant ID:</label>
-                <select id="variantId" name="variantId" class="input-box">
-                    <option value="" disabled selected>Select Variant ID</option>
-                    <c:forEach items="${variantIdList}" var="vids">
-                        <option value="${vids}">${vids}</option>
-                    </c:forEach>
-                </select>
-            </div>
+            <label for="rentRate">Rent Rate per Day:</label>
+            <form:input path="rentRate" id="rentRate" class="input-box" placeholder="Enter Rent Rate per Day" />
+
+            <label for="variantId">Select Variant:</label>
+            <form:select path="variantId" id="variantId" class="input-box">
+                <form:option value="" label="Select Variant ID" disabled="true" />
+                <c:forEach items="${variantIdList}" var="vids">
+                    <form:option value="${vids}">${vids}</form:option>
+                </c:forEach>
+            </form:select>
 
             <div class="button-container">
                 <button type="submit">Submit</button>
                 <button type="reset">Reset</button>
             </div>
-        </form>
+        </form:form>
     </div>
 </body>
 </html>

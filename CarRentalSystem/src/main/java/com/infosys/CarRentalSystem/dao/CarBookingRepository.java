@@ -12,4 +12,7 @@ public interface CarBookingRepository extends JpaRepository<CarBooking, String> 
     public String getLastId();
 
     public List<CarBooking> findAllByUsername(String username);
+    @Query("SELECT cb FROM CarBooking cb WHERE cb.username = :username AND cb.status IN :activeStatuses")
+    public List<CarBooking> findActiveBookingsByUsername(String username, List<String> activeStatuses);
+
 }

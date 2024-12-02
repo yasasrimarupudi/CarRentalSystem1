@@ -11,4 +11,5 @@ public interface CarBookingDao {
     public String generateBookingId();
     public List<CarBooking> findAll();
     public List<CarBooking> findAllByUsername(String username);
+	public List<CarBooking> findActiveBookingsByUsername(String username);
 }

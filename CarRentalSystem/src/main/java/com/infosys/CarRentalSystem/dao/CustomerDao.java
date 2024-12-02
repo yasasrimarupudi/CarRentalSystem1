@@ -13,4 +13,6 @@ public interface CustomerDao {
     public void deleteCustomerById(String id);
     public Boolean getCustomerStatusByUsername(String username);
     public String getLicenceExpiryDate(String username);
+    public Boolean getCustomerActiveBookingStatus(String username); 
+    public void updateCustomerActiveBookingStatus(String username, Boolean status); 
 }

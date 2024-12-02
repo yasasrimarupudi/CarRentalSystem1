@@ -42,5 +42,18 @@ public class CustomerDaoImpl implements CustomerDao{
         return customerRepository.getLicenceExpiryDate(username);
     }
 
+	@Override
+	public Boolean getCustomerActiveBookingStatus(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateCustomerActiveBookingStatus(String username, Boolean status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

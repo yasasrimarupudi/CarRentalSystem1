@@ -109,6 +109,120 @@
         .navbar a.logout:hover {
             background-color: #cc0000; /* Darker red on hover */
         }
+        .chat-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .chat-icon i {
+            color: white;
+            font-size: 24px;
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+         background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .chat-container.active {
+            display: flex;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+        }
+         .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background-color: #007bff;
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.bot {
+        background-color: #f0f0f0;
+            color: black;
+            margin-right: auto;
+        }
+
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-input button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+         }
+
+        .chat-input button:hover {
+            background-color: #0056b3;
+        }
+        
     </style>
 </head>
 
@@ -133,5 +247,72 @@
             <a href="/logout" class="logout">Logout</a>
         </div>
     </div>
+    <div class="chat-icon" onclick="toggleChat()">
+        <i class="fa fa-comments"></i>
+    </div>
+
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3>Customer Support</h3>
+            <button class="close-btn" onclick="toggleChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                Hello! How can I help you today? Type 'help' to see available options.
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function toggleChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.classList.toggle('active');
+        }
+
+        function handleKeyPress(event) {
+            if (event.keyCode === 13) { // Enter key
+                sendMessage();
+            }
+        }
+
+        function appendMessage(message, isUser) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = message ${isUser ? 'user' : 'bot'};
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (message === '') return;
+
+            // Display user message
+            appendMessage(message, true);
+            input.value = '';
+
+            // Send to backend and get response
+            fetch('http://localhost:9898/api/chatbot/query', {
+                method: 'POST', // Make sure to use POST, not GET
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: 'Hello, bot!' }) // Replace with actual user input
+            })
+            .then(response => response.json()) // Assuming response is JSON
+            .then(data => {
+                console.log('Bot response:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        }
+        </script>
 </body>
 </html>

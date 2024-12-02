@@ -15,4 +15,5 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 	
 	@Query("select expiryDate from Customer where username=?1")
 	public String getLicenceExpiryDate(String username);
+	
 }

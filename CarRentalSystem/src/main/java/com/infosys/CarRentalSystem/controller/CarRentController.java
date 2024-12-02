@@ -163,13 +163,12 @@ public class CarRentController {
         return mv;
     }
 
-
     @GetMapping("/carDelete/{id}")
     public ModelAndView deleteCar(@PathVariable String id) {
-        carVariantDao.deleteVariantById(id);
+        carVariantDao.deleteVariantById(id); // Optional
+        carDao.deleteCarById(id);
         return new ModelAndView("redirect:/carReport");
     }
-
     @GetMapping("/carUpdate/{id}")
     public ModelAndView updateCar(@PathVariable String id) {
         Car car = carDao.findById(id);

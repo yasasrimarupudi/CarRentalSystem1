@@ -127,13 +127,13 @@
     border-radius: 10px;
     padding: 30px 20px; /* Decrease horizontal padding (left and right) */
     box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.2); /* Soft white shadow */
-    width: 60%;  /* Reduce overall width */
-    max-width: 700px;  /* Set a max width to keep it narrow */
+    width: 80%;  /* Reduce overall width */
+    max-width: 800px;  /* Set a max width to keep it narrow */
 }
     
 
     table {
-        width: 80%; /* Reduced table width */
+        width: 100%; /* Reduced table width */
         margin-top: 20px;
         border-collapse: collapse;
         background-color: transparent;
